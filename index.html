@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monsters Swimming Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Balsamiq+Sans&display=swap" rel="stylesheet">
+    <style>
+	/* Minimal Gallery Section Styling for Debugging */
+        #gallery h2 {
+            margin-bottom: 30px;
+            color: blue; /* Make sure the heading is visible */
+        }
+
+        .gallery-grid {
+            display: grid; /* Absolute core for grid layout */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Basic responsive grid */
+            gap: 10px; /* Small gap for testing */
+            background-color: lightgray; /* Visible background to see the grid area */
+            padding: 10px;
+            border: 2px solid red; /* Strong border to see grid boundaries */
+        }
+
+        .gallery-item {
+            background-color: white; /* White background for individual image boxes */
+            border: 1px solid green; /* Green border to see item boundaries */
+            overflow: hidden; /* Ensure image doesn't spill */
+            /* Temporarily remove all animations and transitions */
+            /* opacity: 1 !important; Remove animation starting state */
+            /* animation: none !important; Disable animation */
+        }
+
+        .gallery-item img {
+            width: 100%; /* Image fills its container */
+            height: 150px; /* Smaller fixed height for quick testing */
+            object-fit: cover; /* Crops image to fit */
+            display: block; /* Removes extra space below image */
+        }
+        body {
+            font-family: 'Balsamiq Sans', cursive; /* A bubbly and friendly font */
+            margin: 0;
+            padding: 0;
+            background-image: url('pool_bg.jpg'); /* Swimming pool background */
+            background-size: cover;
+            background-attachment: fixed;
+            color: #003366; /* Dark blue for text */
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for readability */
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Bubblegum Sans', cursive; /* More bubbly for titles */
+            color: #0056b3; /* A vibrant blue */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .location-item, .training-item, .offer-item, .price-item {
+            background-color: #e6f2ff; /* Light blue background for items */
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid #b3d9ff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .location-item h3 {
+            margin-top: 0;
+            color: #004085;
+            font-family: 'Bubblegum Sans', cursive;
+        }
+
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366; /* WhatsApp green */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+
+        .offers-list ul, .pricing-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .offers-list li, .pricing-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ccedff; /* Lighter blue for list items */
+            border-radius: 8px;
+            border: 1px solid #99daff;
+        }
+
+        .offers-list li strong {
+            color: #e67e22; /* Orange for emphasis */
+        }
+
+        .pricing-banner {
+            background-color: #007bff; /* Darker blue for the pricing banner */
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .pricing-banner h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .pricing-club {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #003366;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .pricing-club h3 {
+            color: #0056b3;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .pricing-club ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pricing-club li {
+            margin-bottom: 5px;
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #ffc107; /* Yellow for a highlight */
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.2em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            header img {
+                max-width: 150px;
+            }
+
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="monsters_logo.png" alt="Monsters Swimming Academy Logo">
+    </header>
+
+    <a href="https://wa.me/201017677467" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
+        &#x1F4AC;
+    </a>
+
+    <div class="container">
+        <section id="branches">
+            <h2>📍 فروعنا</h2>
+            <div class="location-item">
+                <h3>1️⃣ مصر الجديدة - دار القوات الجوية بجوار كلية البنات</h3>
+                <p>📍 الموقع على الخريطة:</p>
+                <div class="map-container">
+                   <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.034839824214!2d31.3328248!3d30.0629832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583db0592c1f3d%3A0x4651a57d5c3820e9!2sAir%20Forces%20House!5e0!3m2!1sen!2seg!4v1721662612949!5m2!1sen!2seg"
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+                </div>
+            </div>
+
+            <div class="location-item">
+                <h3>2️⃣ المقطم - نادي مصر للتأمين بشارع 9</h3>
+                <p>📍 الموقع على الخريطة:</p>
+                <div class="map-container">
+                    <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.201678739137!2d31.2625829!3d30.0865658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583e1e8a5c53d1%3A0xb2f5cfba4f90ad1f!2sMisr%20Insurance%20Club!5e0!3m2!1sen!2seg!4v1721662671672!5m2!1sen!2seg"
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+                </div>
+            </div>
+
+            <div class="location-item">
+                <h3>3️⃣ العباسية - نادي المحروسة بجوار إشارة صلاح سالم</h3>
+                <p>📍 الموقع على الخريطة:</p>
+                <div class="map-container">
+                    <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.4903682855233!2d31.2847994!3d30.1127031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583f8c781bd875%3A0x4b5abf4cbffb0bfb!2z2YXYs9iq2KzYqSDYp9mE2YXZhNin2Kog2KjZitix2YrYqSDZhNin2YTYsdi5!5e0!3m2!1sen!2seg!4v1721662718010!5m2!1sen!2seg"
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="training-times">
+            <h2>🕐 مواعيد التدريب</h2>
+            <div class="training-item">
+                <h3>📌 دار القوات الجوية:</h3>
+                <p>الإثنين والأربعاء</p>
+            </div>
+            <div class="training-item">
+                <h3>📌 نادي مصر للتأمين:</h3>
+                <p>السبت والثلاثاء</p>
+            </div>
+            <div class="training-item">
+                <h3>📌 نادي المحروسة:</h3>
+                <p>الإثنين والأربعاء</p>
+            </div>
+        </section>
+
+        <section id="offers">
+            <h2>🎉 عروض وأسعار Monsters Swimming Academy</h2>
+            <div class="offers-list">
+                <ul>
+                    <li>💥 <strong>خصم 10% للأخوات والأقارب</strong> - الخصم يصل لـ 50% من قيمة الاشتراك</li>
+                    <li>💥 <strong>خصم 10% للمشتركين الجدد</strong> في أول شهر</li>
+                    <li>💡 <strong>8 تمرينات شهرياً</strong> - تمرينتين في الأسبوع</li>
+                </ul>
+            </div>
+        </section>
+</section> 
+
+       <section id="gallery">
+            <h2>📸 صور من الأكاديمية</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="pic1.jpg" alt="صورة من تدريب السباحة في الأكاديمية">
+                </div>
+                <div class="gallery-item">
+                    <img src="pic2.jpg" alt="أطفال يسبحون في حمام السباحة">
+                </div>
+                <div class="gallery-item">
+                    <img src="pic3.jpg" alt="مدرب يعطي تعليمات في الأكاديمية">
+                </div>
+                <div class="gallery-item">
+                    <img src="pic4.jpg" alt="حمام سباحة أكاديمية مونسترز">
+                </div>
+            </div>
+        </section>
+        <section id="pricing">
+            <div class="pricing-banner">
+                <h2>🏊 تفاصيل الأسعار</h2>
+
+                <div class="pricing-club">
+                    <h3>🏊 نادي المحروسة</h3>
+                    <ul>
+                        <li>جروب 4 أفراد: 400 بدل 450 - ثم 450 شهرياً</li>
+                        <li>جروب فردين: 700 بدل 750 - ثم 750 شهرياً</li>
+                        <li>برايفت: 950 بدل 1000 - ثم 1000 شهرياً</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-club">
+                    <h3>🏊 دار القوات الجوية</h3>
+                    <ul>
+                        <li>جروب 4 أفراد: 650 بدل 700 - ثم 700 شهرياً</li>
+                        <li>جروب فردين: 850 بدل 900 - ثم 900 شهرياً</li>
+                        <li>برايفت: 1350 بدل 1400 - ثم 1400 شهرياً</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-club">
+                    <h3>🏊 نادي التأمين الصحي - شارع 9</h3>
+                    <ul>
+                        <li>جروب 4 أفراد: 600 بدل 650 - ثم 650 شهرياً</li>
+                        <li>جروب فردين: 800 بدل 850 - ثم 850 شهرياً</li>
+                        <li>برايفت: 1350 بدل 1400 - ثم 1400 شهرياً</li>
+                    </ul>
+                </div>
+                <p class="note">💬 العرض لفترة محدودة</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
